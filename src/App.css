@@ -142,8 +142,9 @@ margin: 0 10px 0 10px;
   box-shadow: 1px 1px 2px grey;
   padding-bottom: 30px;
 }
-.wordBox{
-
+#clickableArea{
+height: 250px;
+display: block;
 }
 .theEnglishWord{
   text-align: center;

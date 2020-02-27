@@ -89,7 +89,7 @@ this.state.wordNumber=wordNumber;
           </div>
           <WordList getWordNumber={this.getWordNumber} />
         </div>
-        <Link to="/learning" className=""><button className="btn btn-lg startLearning">Start Learning</button></Link>
+        <Link to={{pathname:'/learning',state:this.state.learningSchedule}}><button className="btn btn-lg startLearning">Start Learning</button></Link>
       </div>
     );
   }
