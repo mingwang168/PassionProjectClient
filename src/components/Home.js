@@ -34,10 +34,10 @@ class Home extends React.Component {
       }
     });
   }
-  handleChangeSchedule = (payBill = true, dayNumber) => {
+  handleChangeSchedule = (changeSchedule = true, dayNumber) => {
     this.state.err = ""
 
-    if (payBill) {
+    if (changeSchedule) {
       if (parseFloat(dayNumber).toString() == "NaN" || dayNumber == '') {
         this.handlevalidate();
         return;
@@ -51,7 +51,8 @@ class Home extends React.Component {
       console.log(scheduleForPut);
 
       scheduleForPut.wordNumberPerDay=dayNumber;
-      scheduleForPut.numberOfDay=Math.ceil(this.state.wordNumber/dayNumber);
+      scheduleForPut.numberOfDay=Math.ceil(this.state.wordNumber*5/(dayNumber*2));
+      scheduleForPut.daysHaveLearned=0;
       console.log(scheduleForPut);
       this.setState({learningSchedule: scheduleForPut});
       fetch(BASE_URL + '/LearningSchedules/1',{
@@ -88,6 +89,8 @@ this.state.wordNumber=wordNumber;
             <span className="btn btn-outline-info btn-sm btnChange" onClick={() => {this.handleChangeSchedule(false) }}>change</span>
           </div>
           <WordList getWordNumber={this.getWordNumber} />
+          <span className="sanDaysText">{this.state.learningSchedule.daysHaveLearned}</span>
+            {(this.state.learningSchedule.daysHaveLearned) > 1 && <span className="sanDaysDays">days</span>}{(this.state.learningSchedule.daysHaveLearned) <= 1 && <span className="sanDaysDays">day</span>}
         </div>
         <Link to={{pathname:'/learning',state:this.state.learningSchedule}}><button className="btn btn-lg startLearning">Start Learning</button></Link>
       </div>
@@ -104,9 +107,7 @@ this.state.wordNumber=wordNumber;
     // console.log(this.props.auth.isAuth);
     return (
       <div className="container">
-
         <img className="logo" src={Logo} alt="the logo"></img>
-
         {contents}
         <ModalChangeSchedule open={this.state.openModalChangeSchedule} handleChangeSchedule={this.handleChangeSchedule} err={this.state.err} />
       </div>

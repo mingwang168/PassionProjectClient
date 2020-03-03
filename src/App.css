@@ -52,7 +52,7 @@ h2{
   justify-content: space-between;
 }
 .scheduleBox{
-  padding: 20px;
+  padding: 10px 25px 10px 25px;
   display: block;
   background-color:rgb(243, 241, 241);
   border-radius: 20px;
@@ -76,16 +76,16 @@ line-height: 200px;
 font-size: 3em;
 }
 .sanDaysText{
-position: fixed;
-top:34%;
+position: absolute;
+top:53%;
 left:48%;
 line-height: 200px;
 font-size: 3em;
 }
 .sanDaysDays{
-  position: fixed;
-  top:36%;
-  left:51%;
+  position: absolute;
+  top:55%;
+  left:52%;
   line-height: 200px;
   font-size: 1em;
 }
@@ -124,17 +124,13 @@ color: #004a80;
 margin-bottom: 20px;
 }
 .modalLable{
-  padding-left: 20%;
-  font-size: large;
+
   color:teal;
 }
 .modalbtn{
   display: flex;
   justify-content: center;
 margin: 0 10px 0 10px;
-}
-.learningwrap{
-
 }
 .LearningdBox{
   display: block;
@@ -184,5 +180,53 @@ color: white;
 }
 .canvas{
   position: absolute;
+  margin-top: 40px;
   left: 0;
+}
+.progressBox{
+  margin-top: 20px;
+  padding: 5px;
+
+}
+.progressTittle{
+  font-size: 1.2rem;
+  font-family: cursive;
+  color:darkblue
+}
+.progressItem{
+  display: flex;
+  margin: 8px 0 8px 0;
+}
+.progressText{
+  width: 150px;
+  font-family: cursive;
+  color: rgb(10, 100, 189);
+}
+.clock{
+padding-top: 30px;
+}
+.resultText{
+  text-align: center;
+  font-size: 1.2rem;
+  color: darkblue;
+  font-family: sans-serif;
+}
+.resultNumber{
+  color: crimson;
+  font-size: 1.5rem;
+}
+.changeWordListForm{
+  padding: 40px;
+}
+.fileFormat{
+  margin: 20px 0 20px 0;
+}
+.wordListSubmit{
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.chooseFile{
+  margin-bottom: 1.2rem;
 }

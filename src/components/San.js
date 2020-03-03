@@ -51,8 +51,7 @@ class San extends React.Component {
 
                 </Layer>
             </Stage>
-            <span className="sanDaysText">{this.props.learningSchedule.daysHaveLearned}</span>
-            {(this.props.learningSchedule.daysHaveLearned) > 1 && <span className="sanDaysDays">days</span>}{(this.props.learningSchedule.daysHaveLearned) <= 1 && <span className="sanDaysDays">day</span>}
+
             </div>
         );
     }
