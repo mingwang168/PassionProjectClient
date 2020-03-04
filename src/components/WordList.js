@@ -20,8 +20,8 @@ class WordList extends React.Component {
         return (
             <div className="vocabularyListbox">
                 <span>
-                    <span style={{fontSize:13}}>Word List : {this.state.wordList.wordListName} </span>
-                    <span style={{fontSize:13,color: "blue"}}>({this.state.wordList.wordNumber} words)</span>
+                    <span style={{fontSize:15}}>Word List : {this.state.wordList.wordListName} </span>
+                    <span style={{fontSize:15,color: "blue"}}>({this.state.wordList.wordNumber} words)</span>
                 </span>
                 <Link to={{pathname:'/changeList',state:this.state.learningSchedule}}>
                 <span className="btn btn-outline-info btn-sm btnChange" >change</span>

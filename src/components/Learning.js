@@ -35,7 +35,9 @@ class Learning extends React.Component {
                     if (e.times == 0) {
                         newWords.push(e);
                     } else {
-                        if (!(e.time6 === true && e.time7 === true && e.time8 === true)) reviewWords.push(e)
+                        if (!(e.time1 === true && e.time2 === true && e.time3 === true) && !(e.time2 === true && e.time3 === true && e.time4 === true) && !(e.time3 === true && e.time4 === true && e.time5 === true) && !(e.time4 === true && e.time5 === true && e.time6 === true) && !(e.time5 === true && e.time6 === true && e.time7 === true) && !(e.time6 === true && e.time7 === true && e.time8 === true)){
+                           reviewWords.push(e) 
+                        } 
                     }
                 });
 

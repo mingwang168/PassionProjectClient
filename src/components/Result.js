@@ -7,16 +7,37 @@ const BASE_URL = 'https://localhost:44316/api';
 var timeDiff = '';
 var newWordsLearnedNumber = '';
 var reviewWordsLearnedNumber = '';
+
+
 class Result extends React.Component {
 
     constructor(props) {
+        var finishedNumber = 0;
         super(props);
         console.log(this.props.location.state);
         timeDiff = (this.props.location.state.timeDiff).toString();
         newWordsLearnedNumber = (this.props.location.state.newWordsLearnedNumber).toString();
         reviewWordsLearnedNumber = (this.props.location.state.reviewWordsLearnedNumber).toString();
-        this.state = { learningSchedule: [], loading: true };
+        this.state = { learningSchedule: [], loading: true, wordNumber: 0, allDone: false };
         this.renewSchedudle();
+
+
+        fetch(BASE_URL + '/Words')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(e => {
+
+                    if ((e.time1 === true && e.time2 === true && e.time3 === true) || (e.time2 === true && e.time3 === true && e.time4 === true) || (e.time3 === true && e.time4 === true && e.time5 === true) || (e.time4 === true && e.time5 === true && e.time6 === true) || (e.time5 === true && e.time6 === true && e.time7 === true) || (e.time6 === true && e.time7 === true && e.time8 === true)) {
+                        finishedNumber = finishedNumber + 1;
+                        console.log(finishedNumber)
+                    }
+                });
+                console.log(data.length);
+                this.setState({ wordNumber: data.length })
+                if (finishedNumber === this.state.wordNumber) {
+                    this.setState({ allDone: true })
+                }
+            })
     }
     renewSchedudle = async () => {
         await fetch(BASE_URL + '/LearningSchedules/1')
@@ -50,10 +71,15 @@ class Result extends React.Component {
                 <img className="logo" src={Logo} alt="the logo"></img>
                 <div className="LearningdBox">
                     <img className="rounded mx-auto d-block clock" src={Clock} alt="the clock"></img>
+                    {this.state.allDone && <div>
+                        <p className="finishAll">
+                            congratulation! You have finished the schedule.</p>
+                    </div>}
                     <p className="resultText">You have learned <span className="resultNumber">{timeDiff}</span> minutes</p>
                     <p className="resultText">New words have learned : <span className="resultNumber">{newWordsLearnedNumber}</span></p>
                     <p className="resultText">words have reviewed : <span className="resultNumber">{reviewWordsLearnedNumber}</span></p>
-                    <Link to={{ pathname: '/learning', state: this.state.learningSchedule }}><button className="btn btn-lg startLearning">Continue Learning</button></Link>
+                    {!this.state.allDone && <Link to={{ pathname: '/learning', state: this.state.learningSchedule }}><button className="btn btn-lg startLearning">Continue Learning</button></Link>}
+
                 </div>
             </div>
         )

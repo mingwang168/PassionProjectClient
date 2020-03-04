@@ -37,7 +37,10 @@ h2{
 .logo{
   margin-left: 36%;
 }
-
+body{
+  background-size:100% 100%;
+  background-image: url("./background.png");
+}
 .container{
   width:60%;
   height: 300px;
@@ -133,59 +136,61 @@ margin-bottom: 20px;
 margin: 0 10px 0 10px;
 }
 .LearningdBox{
+  width: 66%;
   display: block;
+  margin: auto;
   background-color:rgb(243, 241, 241);
   box-shadow: 1px 1px 2px grey;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 #clickableArea{
-height: 250px;
+height: 160px;
 display: block;
 }
 .theEnglishWord{
   text-align: center;
-  font-size: 1.8rem;
-  padding-bottom: 20px;
+  font-size: 1.6rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-bottom: 10px;
   color: white;
 }
 .chineseMeaning{
   text-align: center;
-  font-size: 1.8rem;
-  padding: 50px;
+  font-size: 1.6rem;
+  padding: 25px;
 }
 .phoneticSymbols{
   text-align: center;
   font-size: 1.2rem;
-  padding-bottom: 80px;
+  margin-bottom: 10px;
 }
 .learningbtnunknow{
   width:30%;
-  padding: 10px;
   background-color:darkseagreen;
-  
   font-size: x-large;
 }
 .learningbtnknow{
   width:30%;
-  padding: 10px;
   background-color:rgb(10, 100, 189);
   font-size: x-large;
   color: white;
 }
 .goBackbtn{
 width: 60px;
+margin-top: 0;
+padding: 0 20px 0 20px;
 background-color: rgb(10, 100, 189);
 border-style: none;
 color: white;
 }
+
 .canvas{
   position: absolute;
   margin-top: 40px;
   left: 0;
 }
 .progressBox{
-  margin-top: 20px;
-  padding: 5px;
+  padding: 10px 80px 0 80px;
 
 }
 .progressTittle{
@@ -198,12 +203,12 @@ color: white;
   margin: 8px 0 8px 0;
 }
 .progressText{
-  width: 150px;
+  width: 30%;
   font-family: cursive;
   color: rgb(10, 100, 189);
 }
 .clock{
-padding-top: 30px;
+padding-top: 10px;
 }
 .resultText{
   text-align: center;
@@ -213,7 +218,7 @@ padding-top: 30px;
 }
 .resultNumber{
   color: crimson;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .changeWordListForm{
   padding: 40px;
@@ -229,4 +234,12 @@ padding-top: 30px;
 }
 .chooseFile{
   margin-bottom: 1.2rem;
+}
+.finishAll{
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: serif;
+  color:rgb(241, 14, 26);
+  margin-bottom: 10px;
 }

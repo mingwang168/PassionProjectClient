@@ -78,14 +78,14 @@ this.state.wordNumber=wordNumber;
     return (
       <div className="wrap">
         <div className="scheduleBox">
-          <p style={{fontSize:20}}>You have learned :</p>
+          <p style={{fontSize:22}}>You have learned :</p>
         <San learningSchedule={this.state.learningSchedule}/>
 {/*           <div className="days">
             <span className="daysText">{this.state.learningSchedule.daysHaveLearned}</span>{(this.state.learningSchedule.daysHaveLearned) > 1 && <span>days</span>}{(this.state.learningSchedule.daysHaveLearned) <= 1 && <span>day</span>}
           </div> */}
           
           <div className="learningSchedulebox">
-            <span style={{fontSize:13}}>Schedule : <span style={{color:"blue"}}>{this.state.learningSchedule.wordNumberPerDay}/day</span>, It is expected to be completed in <span style={{color:"blue"}}>{this.state.learningSchedule.numberOfDay}</span> days</span>
+            <span style={{fontSize:15}}>Schedule : <span style={{color:"blue"}}>{this.state.learningSchedule.wordNumberPerDay}/day</span>, <span style={{fontSize:15}}>It is expected to be completed in</span> <span style={{color:"blue"}}>{this.state.learningSchedule.numberOfDay}</span> days</span>
             <span className="btn btn-outline-info btn-sm btnChange" onClick={() => {this.handleChangeSchedule(false) }}>change</span>
           </div>
           <WordList getWordNumber={this.getWordNumber} />
