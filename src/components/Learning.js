@@ -88,6 +88,9 @@ class Learning extends React.Component {
                 console.log(combinWords);
 
                 var lenCombinWords = combinWords.length;
+                if(lenCombinWords==0){
+                    this.setState({redirect:true})
+                }
                 for (var i = lenCombinWords - 1; i >= 0; i--) {
                     var randomComIndex = Math.floor(Math.random() * (i + 1));
                     var itemComIndex = combinWords[randomComIndex];
