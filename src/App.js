@@ -12,6 +12,7 @@ import ForgotPasswordSubmit from './components/auth/ForgotPasswordSubmit';
 import ChangePasswordConfirmation from './components/auth/ChangePasswordConfirmation';
 import Detail from './components/auth/Detail';
 import Learning from './components/Learning.js';
+import Footer from './components/Footer.js';
 import Result from './components/Result';
 import ChangeList from './components/ChangeList.js'
 import { Auth } from 'aws-amplify';
@@ -134,6 +135,7 @@ class App extends Component {
                 }
               />
             </Switch>
+            <Footer  auth={authProps} />
           </div>
         </Router>
       </div>

@@ -3,7 +3,9 @@ import Logo from '../Logo.png';
 import Clock from '../clock1.png'
 import { Link, Redirect } from 'react-router-dom';
 
-const BASE_URL = 'https://localhost:44316/api';
+//const BASE_URL = 'https://localhost:44316/api';
+const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+
 var timeDiff = '';
 var newWordsLearnedNumber = '';
 var reviewWordsLearnedNumber = '';

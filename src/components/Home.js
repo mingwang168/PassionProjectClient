@@ -7,8 +7,8 @@ import San from '../components/San.js';
 import ModalChangeSchedule from '../components/ModalChangSchedule';
 
 //const API_INVOKE_URL = 'https://ukh2ss7ewl.execute-api.us-east-1.amazonaws.com/prod';
-const BASE_URL = 'https://localhost:44316/api';
-
+//const BASE_URL = 'https://localhost:44316/api';
+const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 class Home extends React.Component {
   state={
     openModalChangeSchedule: false,
@@ -48,12 +48,9 @@ class Home extends React.Component {
         }
       ));
       let scheduleForPut=this.state.learningSchedule;
-      console.log(scheduleForPut);
-
       scheduleForPut.wordNumberPerDay=dayNumber;
       scheduleForPut.numberOfDay=Math.ceil(this.state.wordNumber*5/(dayNumber*2));
       scheduleForPut.daysHaveLearned=0;
-      console.log(scheduleForPut);
       this.setState({learningSchedule: scheduleForPut});
       fetch(BASE_URL + '/LearningSchedules/1',{
         method: 'PUT', // or 'PUT'
@@ -61,12 +58,7 @@ class Home extends React.Component {
         headers: new Headers({
           'Content-Type': 'application/json'
         })
-      })/*  .then(response => response.json())
-     .then(data => {
-          this.setState({learningSchedule: JSON.parse(data.body)});
-      }) */;
-
-      console.log(this.state.openModalChangeSchedule);
+      })
     } else {
       this.setState((prevState) => ({ openModalChangeSchedule: !prevState.openModalChangeSchedule }));
     }
@@ -80,10 +72,6 @@ this.state.wordNumber=wordNumber;
         <div className="scheduleBox">
           <p style={{fontSize:22}}>You have learned :</p>
         <San learningSchedule={this.state.learningSchedule}/>
-{/*           <div className="days">
-            <span className="daysText">{this.state.learningSchedule.daysHaveLearned}</span>{(this.state.learningSchedule.daysHaveLearned) > 1 && <span>days</span>}{(this.state.learningSchedule.daysHaveLearned) <= 1 && <span>day</span>}
-          </div> */}
-          
           <div className="learningSchedulebox">
             <span style={{fontSize:15}}>Schedule : <span style={{color:"blue"}}>{this.state.learningSchedule.wordNumberPerDay}/day</span>, <span style={{fontSize:15}}>It is expected to be completed in</span> <span style={{color:"blue"}}>{this.state.learningSchedule.numberOfDay}</span> days</span>
             <span className="btn btn-outline-info btn-sm btnChange" onClick={() => {this.handleChangeSchedule(false) }}>change</span>

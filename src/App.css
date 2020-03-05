@@ -48,7 +48,7 @@ body{
 .learningSchedulebox{
   display: flex;
   justify-content: space-between;
-  margin-top: 250px;
+  margin-top: 220px;
 }
 .vocabularyListbox{
   display: flex;
@@ -80,14 +80,14 @@ font-size: 3em;
 }
 .sanDaysText{
 position: absolute;
-top:53%;
+top:43%;
 left:48%;
 line-height: 200px;
 font-size: 3em;
 }
 .sanDaysDays{
   position: absolute;
-  top:55%;
+  top:45%;
   left:52%;
   line-height: 200px;
   font-size: 1em;
@@ -186,7 +186,7 @@ color: white;
 
 .canvas{
   position: absolute;
-  margin-top: 40px;
+  margin-top: 10px;
   left: 0;
 }
 .progressBox{
@@ -243,4 +243,12 @@ padding-top: 10px;
   color:rgb(214, 35, 140);
   margin-bottom: 10px;
   text-shadow: 1px 1px 4px darkgray;
+}
+.footer{
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  font-family: cursive;
+  transform: translateX(-50%);
+  padding: 0;
 }

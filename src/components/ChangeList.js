@@ -2,18 +2,21 @@ import React from 'react';
 import Logo from '../Logo.png';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
-const BASE_URL = 'https://localhost:44316/api';
+//const BASE_URL = 'https://localhost:44316/api';
+const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 class ChangeList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             wordListName: '',
-            saveProgress: ''
+            saveProgress: '',
+            learningSchedule: [],
+            wordListLen:0
         }
     }
 
-    changeList = (e) => {
+    changeList = async(e) => {
         e.preventDefault();
         const wordListNameInput = e.target.elements.wordListNameInput.value;
         var objFile = document.getElementById("fileId");
@@ -32,6 +35,7 @@ class ChangeList extends React.Component {
                 var filteredWordsRows = wordsRows.filter(function (s) {
                     return s && s.trim();
                 })
+                this.setState({wordListLen:filteredWordsRows.length});
                 fetch(BASE_URL + '/WordList/1', {
                     method: 'PUT',
                     headers: {
@@ -88,6 +92,30 @@ class ChangeList extends React.Component {
             };
             reader.readAsText(files[0], "UTF-8"); //读取文件
         }
+
+        await fetch(BASE_URL + '/LearningSchedules/1')
+        .then(response => response.json())
+        .then(data => {
+          //   console.log(data[0].daysHaveLearned);
+          this.setState({ learningSchedule: data});
+        })
+        this.state.learningSchedule.numberOfDay = Math.ceil(this.state.wordListLen*5/(this.state.learningSchedule.wordNumberPerDay*2))
+
+        fetch(BASE_URL + '/LearningSchedules/1', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "scheduleID": 1,
+                "wordNumberPerDay": this.state.learningSchedule.wordNumberPerDay,
+                "numberOfDay": this.state.learningSchedule.numberOfDay,
+                "wordListID": this.state.learningSchedule.wordListID,
+                "daysHaveLearned": 0
+            })
+        })
+
     }
 
     render() {
