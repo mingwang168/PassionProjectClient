@@ -7,21 +7,21 @@ import San from '../components/San.js';
 import ModalChangeSchedule from '../components/ModalChangSchedule';
 
 //const API_INVOKE_URL = 'https://ukh2ss7ewl.execute-api.us-east-1.amazonaws.com/prod';
-//const BASE_URL = 'https://localhost:44316/api';
-const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+const BASE_URL = 'https://localhost:44316/api';
+//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 class Home extends React.Component {
   state={
     openModalChangeSchedule: false,
     err: "",
     wordNumber:""
   }
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { learningSchedule: [], loading: true };
-    fetch(BASE_URL + '/LearningSchedules/1')
+    console.log(this.props.auth.user.username);
+    fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username )
       .then(response => response.json())
       .then(data => {
-        //   console.log(data[0].daysHaveLearned);
         this.setState({ learningSchedule: data, loading: false });
       })
   }
@@ -52,8 +52,8 @@ class Home extends React.Component {
       scheduleForPut.numberOfDay=Math.ceil(this.state.wordNumber*5/(dayNumber*2));
       scheduleForPut.daysHaveLearned=0;
       this.setState({learningSchedule: scheduleForPut});
-      fetch(BASE_URL + '/LearningSchedules/1',{
-        method: 'PUT', // or 'PUT'
+      fetch(BASE_URL + '/LearningSchedules?username=' + this.props.auth.user.username ,{
+        method: 'POST', // or 'PUT'
         body: JSON.stringify(this.state.learningSchedule), // data can be `string` or {object}!
         headers: new Headers({
           'Content-Type': 'application/json'

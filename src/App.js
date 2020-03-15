@@ -36,8 +36,9 @@ class App extends Component {
     try {
       const session = await Auth.currentSession();
       this.authenticateUser(true)
-      // console.log(session);
+     //  console.log(session.idToken.payload.email);
       const user = await Auth.currentAuthenticatedUser();
+     // console.log(user);
       this.setAuthUser(user);
     } catch (error) {
       console.log(error);
@@ -53,6 +54,7 @@ class App extends Component {
       authenticateUser: this.authenticateUser,
       setAuthUser: this.setAuthUser
     }
+  //  console.log(authProps);
     //pass authProps (along with existing props as needed) to each component
     return (
       //wait for Auth methods before rendering router

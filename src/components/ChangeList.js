@@ -2,8 +2,8 @@ import React from 'react';
 import Logo from '../Logo.png';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
-//const BASE_URL = 'https://localhost:44316/api';
-const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+const BASE_URL = 'https://localhost:44316/api';
+//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 class ChangeList extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class ChangeList extends React.Component {
                     return s && s.trim();
                 })
                 this.setState({wordListLen:filteredWordsRows.length});
-                fetch(BASE_URL + '/WordList/1', {
+               await fetch(BASE_URL + '/WordList/1', {
                     method: 'PUT',
                     headers: {
                         'Accept': 'application/json',
@@ -93,26 +93,27 @@ class ChangeList extends React.Component {
             reader.readAsText(files[0], "UTF-8"); //读取文件
         }
 
-        await fetch(BASE_URL + '/LearningSchedules/1')
+        await fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username )
         .then(response => response.json())
         .then(data => {
           //   console.log(data[0].daysHaveLearned);
           this.setState({ learningSchedule: data});
         })
-        this.state.learningSchedule.numberOfDay = Math.ceil(this.state.wordListLen*5/(this.state.learningSchedule.wordNumberPerDay*2))
+        this.state.learningSchedule.numberOfDay = Math.ceil(this.state.wordListLen*5/(this.state.learningSchedule.wordNumberPerDay*2));
 
-        fetch(BASE_URL + '/LearningSchedules/1', {
+        fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username , {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "scheduleID": 1,
+                "scheduleID": this.state.learningSchedule.scheduleID,
                 "wordNumberPerDay": this.state.learningSchedule.wordNumberPerDay,
                 "numberOfDay": this.state.learningSchedule.numberOfDay,
                 "wordListID": this.state.learningSchedule.wordListID,
-                "daysHaveLearned": 0
+                "daysHaveLearned": 0,
+                "userName": this.props.auth.user.username
             })
         })
 

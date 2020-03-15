@@ -3,8 +3,8 @@ import Logo from '../Logo.png';
 import Clock from '../clock1.png'
 import { Link, Redirect } from 'react-router-dom';
 
-//const BASE_URL = 'https://localhost:44316/api';
-const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+const BASE_URL = 'https://localhost:44316/api';
+//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 var timeDiff = '';
 var newWordsLearnedNumber = '';
@@ -42,7 +42,7 @@ class Result extends React.Component {
             })
     }
     renewSchedudle = async () => {
-        await fetch(BASE_URL + '/LearningSchedules/1')
+        await fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username)
             .then(response => response.json())
             .then(data => {
                 //   console.log(data[0].daysHaveLearned);
@@ -50,18 +50,19 @@ class Result extends React.Component {
             });
 
         console.log(this.state.learningSchedule)
-        fetch(BASE_URL + '/LearningSchedules/1', {
+        fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "scheduleID": 1,
+                "scheduleID": this.state.learningSchedule.scheduleID,
                 "wordNumberPerDay": this.state.learningSchedule.wordNumberPerDay,
                 "numberOfDay": this.state.learningSchedule.numberOfDay,
                 "wordListID": this.state.learningSchedule.wordListID,
-                "daysHaveLearned": (this.state.learningSchedule.daysHaveLearned + 1)
+                "daysHaveLearned": (this.state.learningSchedule.daysHaveLearned + 1),
+                "userName": this.props.auth.user.username
             })
         })
     }
@@ -107,7 +108,7 @@ class Result extends React.Component {
                     //  alert(error);
                 })
         })
-        await fetch(BASE_URL + '/LearningSchedules/1')
+        await fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username)
             .then(response => response.json())
             .then(data => {
                 //   console.log(data[0].daysHaveLearned);
@@ -115,18 +116,19 @@ class Result extends React.Component {
             });
 
         console.log(this.state.learningSchedule)
-        await fetch(BASE_URL + '/LearningSchedules/1', {
+        await fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "scheduleID": 1,
+                "scheduleID": this.state.learningSchedule.scheduleID,
                 "wordNumberPerDay": this.state.learningSchedule.wordNumberPerDay,
                 "numberOfDay": this.state.learningSchedule.numberOfDay,
                 "wordListID": this.state.learningSchedule.wordListID,
-                "daysHaveLearned": 0
+                "daysHaveLearned": 0,
+                "userName": this.props.auth.user.username
             })
         })
         this.setState({redirect:true});
