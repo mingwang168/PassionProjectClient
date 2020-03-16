@@ -36,19 +36,39 @@ class ChangeList extends React.Component {
                     return s && s.trim();
                 })
                 this.setState({wordListLen:filteredWordsRows.length});
-               await fetch(BASE_URL + '/WordList/1', {
-                    method: 'PUT',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        "wordListID": 1,
-                        "wordListName": wordListNameInput,
-                        "wordNumber": filteredWordsRows.length
-                    })
-                })
-                await fetch(BASE_URL + '/Words', {
+                await fetch(BASE_URL + '/WordList/' + this.props.auth.user.username )
+                .then(response => response.json())
+                .then(data => {
+                    if(data.status!=404){
+                         fetch(BASE_URL + '/WordList?username=' + this.props.auth.user.username, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                "wordListID":data.wordListID,
+                                "wordListName": wordListNameInput,
+                                "wordNumber": filteredWordsRows.length,
+                                "userName": this.props.auth.user.username
+                            })
+                        })
+                    }else{
+                        fetch(BASE_URL + '/WordList?username=' + this.props.auth.user.username, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                "wordListName": wordListNameInput,
+                                "wordNumber": filteredWordsRows.length,
+                                "userName": this.props.auth.user.username
+                            })
+                        })
+                    }
+                });
+                await fetch(BASE_URL + '/Words/' + this.props.auth.user.username, {
                     method: 'DELETE',
                     headers: {
                         'Accept': 'application/json',
@@ -71,7 +91,7 @@ class ChangeList extends React.Component {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            wordID: index,
+                         //   wordID: index,
                             englishWord: word[0],
                             phoneticSymbols: word[1],
                             chineseMeaning: word[2],
@@ -84,7 +104,8 @@ class ChangeList extends React.Component {
                             time6: 0,
                             time7: 0,
                             time8: 0,
-                            wordListID: 1
+                            wordListID: 1,
+                            userName: this.props.auth.user.username
                         })
                     })
                 })

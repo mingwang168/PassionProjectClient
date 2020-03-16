@@ -5,15 +5,14 @@ const BASE_URL = 'https://localhost:44316/api';
 //const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 class WordList extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { wordList: '' };
-        fetch(BASE_URL + '/WordList/1')
+        fetch(BASE_URL + '/WordList/' + this.props.auth.user.username)
             .then(response => response.json())
             .then(data => {
                 this.setState({ wordList: data });
             });
-            
     }
 
     render() {

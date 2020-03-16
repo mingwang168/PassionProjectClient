@@ -24,7 +24,7 @@ class Result extends React.Component {
         this.renewSchedudle();
 
 
-        fetch(BASE_URL + '/Words')
+        fetch(BASE_URL + '/Words/' + this.props.auth.user.username)
             .then(response => response.json())
             .then(data => {
                 data.forEach(e => {
@@ -68,7 +68,7 @@ class Result extends React.Component {
     }
 
     renewWords=async()=>{
-        await fetch(BASE_URL + '/Words')
+        await fetch(BASE_URL + '/Words/' + this.props.auth.user.username)
         .then(response => response.json())
         .then(data => {
             words=data;
@@ -94,7 +94,8 @@ class Result extends React.Component {
                     time6: 0,
                     time7: 0,
                     time8: 0,
-                    wordListID: 1
+                    wordListID: 1,
+                    userName: this.props.auth.user.username
                 })
             })
                 // Wait for response.   
@@ -143,7 +144,7 @@ class Result extends React.Component {
                 <img className="logo" src={Logo} alt="the logo"></img>
                 <div className="LearningdBox">
                     <img className="rounded mx-auto d-block clock" src={Clock} alt="the clock"></img>
-                    <p className="resultText">You have learned <span className="resultNumber">{timeDiff}</span> minutes</p>
+                    <p className="resultText">This time, you have learned <span className="resultNumber">{timeDiff}</span> minutes</p>
                     <p className="resultText">New words have learned : <span className="resultNumber">{newWordsLearnedNumber}</span></p>
                     <p className="resultText">words have reviewed : <span className="resultNumber">{reviewWordsLearnedNumber}</span></p>
                     {!this.state.allDone && <Link to={{ pathname: '/learning', state: this.state.learningSchedule }}><button className="btn btn-lg startLearning">Continue Learning</button></Link>}

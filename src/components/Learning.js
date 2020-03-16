@@ -16,7 +16,7 @@ var endingTime = '';
 class Learning extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
         this.state = { toLearnWords: [], currentWord: '', isShown: false, newPercent: '', reviewPercent: '', redirect: false };
         index = 0;
         newWordsNumber = 0;
@@ -25,7 +25,7 @@ class Learning extends React.Component {
         reviewWordsHaveLearned = 0;
         beginingTime = '';
         endingTime = '';
-        fetch(BASE_URL + '/Words')
+        fetch(BASE_URL + '/Words/' + this.props.auth.user.username)
             .then(response => response.json())
             .then(data => {
                 var words = [];
@@ -163,7 +163,8 @@ class Learning extends React.Component {
                 time6: wordSet.time6,
                 time7: wordSet.time7,
                 time8: wordSet.time8,
-                wordListID: 1
+                wordListID: 1,
+                userName: this.props.auth.user.username
             })
         })
             // Wait for response.   
@@ -242,7 +243,8 @@ class Learning extends React.Component {
                 time6: wordSet.time6,
                 time7: wordSet.time7,
                 time8: wordSet.time8,
-                wordListID: 1
+                wordListID: 1,
+                userName: this.props.auth.user.username
             })
         })
             // Wait for response.   
