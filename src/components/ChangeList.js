@@ -2,8 +2,8 @@ import React from 'react';
 import Logo from '../Logo.png';
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
-const BASE_URL = 'https://localhost:44316/api';
-//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+//const BASE_URL = 'https://localhost:44316/api';
+const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 class ChangeList extends React.Component {
     constructor(props) {

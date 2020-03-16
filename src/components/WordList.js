@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-const BASE_URL = 'https://localhost:44316/api';
-//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+//const BASE_URL = 'https://localhost:44316/api';
+const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 class WordList extends React.Component {
     constructor(props) {
