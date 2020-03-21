@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.15610220.chunk.css",
+    "main.js": "/static/js/main.cf87ca39.chunk.js",
+    "main.js.map": "/static/js/main.cf87ca39.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c8457b1a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c8457b1a.js.map",
+    "static/css/2.1d10ae30.chunk.css": "/static/css/2.1d10ae30.chunk.css",
+    "static/js/2.b797873f.chunk.js": "/static/js/2.b797873f.chunk.js",
+    "static/js/2.b797873f.chunk.js.map": "/static/js/2.b797873f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.1a688372e3a9c2bfebbc714bcbd2729f.js": "/precache-manifest.1a688372e3a9c2bfebbc714bcbd2729f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.1d10ae30.chunk.css.map": "/static/css/2.1d10ae30.chunk.css.map",
+    "static/css/main.15610220.chunk.css.map": "/static/css/main.15610220.chunk.css.map",
+    "static/js/2.b797873f.chunk.js.LICENSE": "/static/js/2.b797873f.chunk.js.LICENSE",
+    "static/media/English-words-vocabulary.jpg": "/static/media/English-words-vocabulary.b9d2f06a.jpg",
+    "static/media/App.css": "/static/media/background.d67b624e.png",
+    "static/media/clock1.png": "/static/media/clock1.4608d02c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c8457b1a.js",
+    "static/css/2.1d10ae30.chunk.css",
+    "static/js/2.b797873f.chunk.js",
+    "static/css/main.15610220.chunk.css",
+    "static/js/main.cf87ca39.chunk.js"
+  ]
+}
