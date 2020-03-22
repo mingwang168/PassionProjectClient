@@ -7,8 +7,8 @@ import San from '../components/San.js';
 import ModalChangeSchedule from '../components/ModalChangSchedule';
 
 //const API_INVOKE_URL = 'https://ukh2ss7ewl.execute-api.us-east-1.amazonaws.com/prod';
-const BASE_URL = 'https://localhost:44316/api';
-//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+//const BASE_URL = 'https://localhost:44316/api';
+const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 class Home extends React.Component {
   state = {
     openModalChangeSchedule: false,

@@ -3,8 +3,8 @@ import Logo from '../Logo.png';
 import Clock from '../clock1.png'
 import { Link, Redirect } from 'react-router-dom';
 
-const BASE_URL = 'https://localhost:44316/api';
-//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+//const BASE_URL = 'https://localhost:44316/api';
+const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 var timeDiff = '';
 var newWordsLearnedNumber = '';
@@ -16,7 +16,7 @@ class Result extends React.Component {
     constructor(props) {
         var finishedNumber = 0;
         super(props);
-        console.log(this.props.location.state);
+      //  console.log(this.props.location.state);
         timeDiff = (this.props.location.state.timeDiff).toString();
         newWordsLearnedNumber = (this.props.location.state.newWordsLearnedNumber).toString();
         reviewWordsLearnedNumber = (this.props.location.state.reviewWordsLearnedNumber).toString();
@@ -28,8 +28,7 @@ class Result extends React.Component {
             .then(response => response.json())
             .then(data => {
                 data.forEach(e => {
-
-                    if ((e.time1 === true && e.time2 === true && e.time3 === true) || (e.time2 === true && e.time3 === true && e.time4 === true) || (e.time3 === true && e.time4 === true && e.time5 === true) || (e.time4 === true && e.time5 === true && e.time6 === true) || (e.time5 === true && e.time6 === true && e.time7 === true) || (e.time6 === true && e.time7 === true && e.time8 === true)) {
+                    if ((e.time1 === true && e.time2 === true && e.time3 === true) || (e.time2 === true && e.time3 === true && e.time4 === true) || (e.time3 === true && e.time4 === true && e.time5 === true) || (e.time4 === true && e.time5 === true && e.time6 === true) || (e.time5 === true && e.time6 === true && e.time7 === true) || (e.time6 === true && e.time7 === true && e.time8 === true) || (e.times >= 8)) {
                         finishedNumber = finishedNumber + 1;
                         console.log(finishedNumber)
                     }
@@ -49,7 +48,7 @@ class Result extends React.Component {
                 this.setState({ learningSchedule: data, loading: false });
             });
 
-        console.log(this.state.learningSchedule)
+       // console.log(this.state.learningSchedule)
         fetch(BASE_URL + '/LearningSchedules/' + this.props.auth.user.username, {
             method: 'PUT',
             headers: {
