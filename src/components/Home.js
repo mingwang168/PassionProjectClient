@@ -7,8 +7,8 @@ import San from '../components/San.js';
 import ModalChangeSchedule from '../components/ModalChangSchedule';
 
 //const API_INVOKE_URL = 'https://ukh2ss7ewl.execute-api.us-east-1.amazonaws.com/prod';
-//const BASE_URL = 'https://localhost:44316/api';
-const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+const BASE_URL = 'https://localhost:44316/api';
+//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 class Home extends React.Component {
   state = {
     openModalChangeSchedule: false,
@@ -19,7 +19,8 @@ class Home extends React.Component {
     super(props);
     this.state = { learningSchedule: [], loading: true, showLearningBtn: false };
     // console.log(this.props.auth.user.username);
-    fetch(BASE_URL + '/Words/' + this.props.auth.user.username)
+    if(this.props.auth.isAuth){
+      fetch(BASE_URL + '/Words/' + this.props.auth.user.username)
     .then(response => response.json())
     .then(data => {
    //   console.log(data);
@@ -59,6 +60,8 @@ class Home extends React.Component {
           });
         }
       });
+    }
+    
   }
 
   handlevalidate = () => {

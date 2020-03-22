@@ -3,8 +3,8 @@ import Logo from '../Logo.png';
 import { Link, Redirect } from 'react-router-dom';
 import { getElementError } from '@testing-library/react';
 
-//const BASE_URL = 'https://localhost:44316/api';
-const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
+const BASE_URL = 'https://localhost:44316/api';
+//const BASE_URL = 'https://memorizewordsapi.azurewebsites.net/api';
 
 var index = 0;
 var newWordsNumber = 0;
