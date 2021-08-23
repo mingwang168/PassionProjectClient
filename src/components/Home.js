@@ -130,6 +130,7 @@ class Home extends React.Component {
     let contents = this.state.loading || !this.props.auth.isAuth
       ? <div>
         <p><em>Please register and login or login with a default user. (Username: mingwang, Password: P@$$w0rd)</em></p>
+        <p style={{ color: "red" }}><em>Wait loading...</em></p>
         <img className="coverPic" src={wordsPic} alt="english vords" width="380" />
       </div>
       : this.renderSchedule();
